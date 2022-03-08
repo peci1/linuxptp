@@ -465,7 +465,8 @@ static int clock_management_fill_response(struct clock *c, struct port *p,
 		break;
 	case MID_SERVO_STATE_NP:
 		servo = (struct servo_state_np *) tlv->data;
-		servo->state = c->servo_state;
+		servo->state = clock_servo_state(c);
+		servo->reserved = 0;
 		datalen = sizeof(*servo);
 		break;
 	default:

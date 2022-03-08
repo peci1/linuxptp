@@ -334,6 +334,7 @@ struct port_ds_np {
 
 struct servo_state_np {
 	uint8_t state;
+	Octet		reserved;
 } PACKED;
 
 
