@@ -207,6 +207,22 @@ const char *ustate2str(enum unicast_state ustate)
 	return "???";
 }
 
+const char *servo_state2str(enum servo_state sstate)
+{
+	switch (sstate) {
+	case SERVO_UNLOCKED:
+		return "UNLOCKED";
+	case SERVO_JUMP:
+		return "JUMP";
+	case SERVO_LOCKED:
+		return "LOCKED";
+	case SERVO_LOCKED_STABLE:
+		return "LOCKED_STABLE";
+	}
+
+	return "???";
+}
+
 void posix_clock_close(clockid_t clock)
 {
 	if (clock == CLOCK_REALTIME) {

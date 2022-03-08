@@ -111,6 +111,7 @@ struct management_id idtab[] = {
 	{ "GRANDMASTER_SETTINGS_NP", MID_GRANDMASTER_SETTINGS_NP, do_set_action },
 	{ "SUBSCRIBE_EVENTS_NP", MID_SUBSCRIBE_EVENTS_NP, do_set_action },
 	{ "SYNCHRONIZATION_UNCERTAIN_NP", MID_SYNCHRONIZATION_UNCERTAIN_NP, do_set_action },
+	{ "SERVO_STATE_NP", MID_SERVO_STATE_NP, do_get_action },
 /* Port management ID values */
 	{ "NULL_MANAGEMENT", MID_NULL_MANAGEMENT, null_management },
 	{ "CLOCK_DESCRIPTION", MID_CLOCK_DESCRIPTION, do_get_action },

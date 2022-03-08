@@ -346,6 +346,7 @@ static int clock_management_fill_response(struct clock *c, struct port *p,
 	struct grandmaster_settings_np *gsn;
 	struct management_tlv_datum *mtd;
 	struct subscribe_events_np *sen;
+	struct servo_state_np *servo;
 	struct management_tlv *tlv;
 	struct time_status_np *tsn;
 	struct tlv_extra *extra;
@@ -461,6 +462,11 @@ static int clock_management_fill_response(struct clock *c, struct port *p,
 		mtd = (struct management_tlv_datum *) tlv->data;
 		mtd->val = c->local_sync_uncertain;
 		datalen = sizeof(*mtd);
+		break;
+	case MID_SERVO_STATE_NP:
+		servo = (struct servo_state_np *) tlv->data;
+		servo->state = c->servo_state;
+		datalen = sizeof(*servo);
 		break;
 	default:
 		/* The caller should *not* respond to this message. */
@@ -1524,6 +1530,7 @@ int clock_manage(struct clock *c, struct port *p, struct ptp_message *msg)
 	case MID_GRANDMASTER_SETTINGS_NP:
 	case MID_SUBSCRIBE_EVENTS_NP:
 	case MID_SYNCHRONIZATION_UNCERTAIN_NP:
+	case MID_SERVO_STATE_NP:
 		clock_management_send_error(p, msg, MID_NOT_SUPPORTED);
 		break;
 	default:

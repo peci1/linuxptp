@@ -165,6 +165,7 @@ static void pmc_show(struct ptp_message *msg, FILE *fp)
 	struct unicast_master_entry *ume;
 	struct subscribe_events_np *sen;
 	struct port_properties_np *ppn;
+	struct servo_state_np *servo;
 	struct timePropertiesDS *tp;
 	struct management_tlv *mgt;
 	struct time_status_np *tsn;
@@ -424,6 +425,11 @@ static void pmc_show(struct ptp_message *msg, FILE *fp)
 		mtd = (struct management_tlv_datum *) mgt->data;
 		fprintf(fp, "SYNCHRONIZATION_UNCERTAIN_NP "
 			IFMT "uncertain %hhu", mtd->val);
+		break;
+	case MID_SERVO_STATE_NP:
+		servo = (struct servo_state_np *) mgt->data;
+		fprintf(fp, "SERVO_STATE_NP "
+			IFMT "state %s", servo_state2str(servo->state));
 		break;
 	case MID_PORT_DATA_SET:
 		p = (struct portDS *) mgt->data;

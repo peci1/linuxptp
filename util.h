@@ -26,6 +26,7 @@
 #include "address.h"
 #include "ddt.h"
 #include "ether.h"
+#include "servo.h"
 #include "transport.h"
 #include "unicast_fsm.h"
 
@@ -112,6 +113,13 @@ char *pid2str(struct PortIdentity *id);
 char *portaddr2str(struct PortAddress *addr);
 
 const char *ustate2str(enum unicast_state ustate);
+
+/**
+ * Convert servo state to a human readable string.
+ * @param sstate The state to show.
+ * @return       The string representing the state.
+ */
+const char *servo_state2str(enum servo_state sstate);
 
 /**
  * Closes a dynamic posix clock.
